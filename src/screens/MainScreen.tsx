@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    FlatList,
+    StyleSheet,
+} from 'react-native';
 import axios from 'axios';
-import { View, Text, TouchableHighlight, FlatList } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../navigator';
@@ -27,12 +33,11 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
     }, []);
 
     return (
-        <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.container}>
             <Text>Hello Page 1</Text>
-            <TouchableHighlight onPress={() => navigation.navigate('New')}>
+            <TouchableOpacity onPress={() => navigation.navigate('New')}>
                 <Text>Add New</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <FlatList
                 data={appdeas}
                 renderItem={({ item }) => <Text> {item.name}</Text>}
@@ -41,3 +46,14 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    title: {
+
+    },
+});
