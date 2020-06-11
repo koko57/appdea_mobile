@@ -10,6 +10,7 @@ import axios from 'axios';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../navigator';
+import { Appdea } from '../components/Appdea';
 
 type MainScreenRouteProp = RouteProp<StackParamList, 'Main'>;
 
@@ -34,15 +35,16 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text>Hello Page 1</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('New')}>
-                <Text>Add New</Text>
-            </TouchableOpacity>
             <FlatList
                 data={appdeas}
-                renderItem={({ item }) => <Text> {item.name}</Text>}
+                renderItem={({ item }) => <Appdea appdea={item.name} />}
                 keyExtractor={item => item.id.toString()}
             />
+            <TouchableOpacity
+                onPress={(): void => navigation.navigate('New')}
+                style={styles.button}>
+                <Text>Add New</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -50,10 +52,18 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
     },
-    title: {
-
+    title: {},
+    button: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        height: 80,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#bada55',
     },
 });
