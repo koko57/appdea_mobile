@@ -37,7 +37,7 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
         <View style={styles.container}>
             <FlatList
                 data={appdeas}
-                renderItem={({ item }) => <Appdea appdea={item.name} />}
+                renderItem={({ item }) => <Appdea appdea={item.name} appdeaId={item.id} />}
                 keyExtractor={item => item.id.toString()}
             />
             <TouchableOpacity
