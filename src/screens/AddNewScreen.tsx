@@ -3,6 +3,7 @@ import axios from 'axios';
 import { View, Text, Alert, Button, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { TextField } from '../components/TextField';
 import { useForm } from "react-hook-form";
+import { BASE_URL } from '../../apiConfig';
 
 type Style = {
     formView: ViewStyle,
@@ -14,15 +15,16 @@ export const AddNewScreen: React.FC = () => {
     const { control, handleSubmit, errors } = useForm();
     const onSubmit = async (data) => {
         try {
-            const res = axios.post('http://127.0.0.1:5000/appdeas', data)
+            const res = axios.post(`${BASE_URL}/appdeas`, data)
             Alert.alert(`A new apddea ${data.name} successfully created`)   
         } catch (err) {
             Alert.alert(err)
         }
     }
+    
     return (
         <View style={styles.formView}>
-            <Text style={styles.title}>Hello Page 2</Text>
+            <Text style={styles.title}>Add new Appdea</Text>
             <TextField name="name" control={control} placeholder="App name" rules={{ required: true }} />
             <TextField name="description" control={control} placeholder="Description" multiline />
             <Button title="Submit" onPress={handleSubmit(onSubmit)} />
@@ -37,6 +39,7 @@ const styles = StyleSheet.create<Style>({
         padding: 20,
     },
     title: {
-        fontSize: 20
+        fontSize: 20,
+        marginBottom: 10,
     }
 })

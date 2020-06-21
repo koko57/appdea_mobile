@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../navigator';
+import { BASE_URL } from '../../apiConfig';
 
 type AppdeaScreenRouteProp = RouteProp<StackParamList, 'Appdea'>;
 
@@ -24,7 +25,7 @@ export const AppdeaScreen: React.FC<Props> = ({ route, navigation }) => {
 
     useEffect(() => {
         const getAppdea = async (): Promise<any> => {
-            const res = await axios.get(`http://127.0.0.1:5000/appdeas/${appdeaId}`);
+            const res = await axios.get(`${BASE_URL}/appdeas/${appdeaId}`);
             console.log(res.data);
             console.log(appdeaId);
             setAppdea(res.data.appdea);

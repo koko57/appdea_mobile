@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { View, TextInput } from 'react-native';
+import React from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
 import { Controller, Control } from 'react-hook-form';
+import { THEME } from '../styles/theme';
 
 type Props = {
     name: string;
@@ -27,13 +28,29 @@ export const TextField: React.FC<Props> = ({
                 multiline={multiline}
                 placeholder={placeholder}
                 numberOfLines={4}
-                style={{
-                    height: 40,
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                }}
+                style={multiline ? styles.textarea : styles.input}
                 onChange={args => args[0].nativeEvent.text}
             />
         </View>
     );
 };
+
+const commonStyles = {
+    borderColor: THEME.COLORS.LEMON_YELLOW,
+    borderWidth: 2,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginBottom: 10,
+};
+
+const styles = StyleSheet.create({
+    input: {
+        height: 40,
+        ...commonStyles,
+    },
+    textarea: {
+        height: 100,
+        ...commonStyles,
+    },
+});
