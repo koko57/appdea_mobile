@@ -16,7 +16,6 @@ export const Appdea: React.FC<Props> = ({ appdea, appdeaId }: Props) => {
         <TouchableOpacity
             style={styles.button}
             onPress={() => navigation.navigate('Appdea', { appdeaId })}>
-            <Text style={styles.bullet}>{`\u2022`}</Text>
             <Text style={styles.text}>{appdea}</Text>
         </TouchableOpacity>
     );

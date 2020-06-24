@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
     Text,
     TouchableOpacity,
@@ -26,8 +26,8 @@ type Props = {
 
 export const MainScreen: React.FC<Props> = ({ navigation }) => {
     const [appdeas, setAppdeas] = useState([]);
-    useEffect(() => {
-        const getAppdeas = async (): Promise<any> => {
+
+    const getAppdeas = useCallback(async (): Promise<any> => {
             try {
                 const res = await axios.get(`${BASE_URL}/appdeas`);
                 setAppdeas(res.data.appdeas);
@@ -36,7 +36,18 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
                 console.log(err);
                 Alert.alert('Something went wrong! 😔')
             }
-        };
+        },
+        []
+    )
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            getAppdeas();
+        });
+        return unsubscribe;
+      }, [navigation]);
+
+    useEffect(() => {
         getAppdeas();
     }, []);
 

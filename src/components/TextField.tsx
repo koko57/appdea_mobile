@@ -19,19 +19,17 @@ export const TextField: React.FC<Props> = ({
     multiline,
 }) => {
     return (
-        <View>
-            <Controller
-                as={TextInput}
-                name={name}
-                control={control}
-                rules={rules}
-                multiline={multiline}
-                placeholder={placeholder}
-                numberOfLines={4}
-                style={multiline ? styles.textarea : styles.input}
-                onChange={args => args[0].nativeEvent.text}
-            />
-        </View>
+        <Controller
+            as={TextInput}
+            name={name}
+            control={control}
+            rules={rules}
+            multiline={multiline}
+            placeholder={placeholder}
+            numberOfLines={4}
+            style={multiline ? styles.textarea : styles.input}
+            onChange={args => args[0].nativeEvent.text}
+        />
     );
 };
 

@@ -5,7 +5,7 @@ import { MainScreen } from './src/screens/MainScreen';
 import { AddNewScreen } from './src/screens/AddNewScreen';
 import { AppdeaScreen } from './src/screens/AppdeaScreen';
 import { THEME } from './src/styles/theme';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const { Navigator, Screen } = Stack;
 
@@ -21,17 +21,19 @@ const HeaderStyle = {
 
 const App = () => {
     return (
-        <NavigationContainer>
-            <Navigator screenOptions={{ ...HeaderStyle }}>
-                <Screen
-                    name="Main"
-                    component={MainScreen}
-                    options={{ title: 'Appdea' }}
-                />
-                <Screen name="New" component={AddNewScreen} />
-                <Screen name="Appdea" component={AppdeaScreen} />
-            </Navigator>
-        </NavigationContainer>
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <Navigator screenOptions={{ ...HeaderStyle }}>
+                    <Screen
+                        name="Main"
+                        component={MainScreen}
+                        options={{ title: 'Appdea' }}
+                    />
+                    <Screen name="New" component={AddNewScreen} />
+                    <Screen name="Appdea" component={AppdeaScreen} />
+                </Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
     );
 };
 

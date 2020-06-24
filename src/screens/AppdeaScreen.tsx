@@ -5,6 +5,7 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../navigator';
 import { BASE_URL } from '../../apiConfig';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type AppdeaScreenRouteProp = RouteProp<StackParamList, 'Appdea'>;
 
@@ -15,6 +16,7 @@ type Props = {
     navigation: AppdeaScreenNavigationProp;
 };
 type Style = {
+    container: ViewStyle,
     formView: ViewStyle,
     title: TextStyle
 }
@@ -26,22 +28,26 @@ export const AppdeaScreen: React.FC<Props> = ({ route, navigation }) => {
     useEffect(() => {
         const getAppdea = async (): Promise<any> => {
             const res = await axios.get(`${BASE_URL}/appdeas/${appdeaId}`);
-            console.log(res.data);
-            console.log(appdeaId);
             setAppdea(res.data.appdea);
             return res.data;
         };
         getAppdea();
     }, [])
+    
     return (
-        <View style={styles.formView}>
-            <Text style={styles.title}>{appdea?.name}</Text>
-            <Text style={styles.title}>{appdea?.description}</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.formView}>
+                <Text style={styles.title}>{appdea?.name}</Text>
+                <Text style={styles.title}>{appdea?.description}</Text>
+            </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create<Style>({
+    container: {
+        flex: 1
+    },
     formView: {
         flex: 1,
         alignItems: 'stretch',
