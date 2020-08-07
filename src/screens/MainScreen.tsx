@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import {
-    Text,
-    TouchableOpacity,
     FlatList,
     StyleSheet,
     Alert,
@@ -28,46 +26,37 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
     const [appdeas, setAppdeas] = useState([]);
 
     const getAppdeas = useCallback(async (): Promise<any> => {
-            try {
-                const res = await axios.get(`${BASE_URL}/appdeas`);
-                setAppdeas(res.data.appdeas);
-                return res.data;
-            } catch (err) {
-                console.log(err);
-                Alert.alert('Something went wrong! 😔')
-            }
-        },
-        []
-    )
+        try {
+            const res = await axios.get(`${BASE_URL}/appdeas`);
+            setAppdeas(res.data.appdeas);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+            Alert.alert('Something went wrong! 😔');
+        }
+    }, []);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             getAppdeas();
         });
         return unsubscribe;
-      }, [navigation]);
+    }, [navigation]);
 
     useEffect(() => {
         getAppdeas();
     }, []);
 
     return (
-        <>
-            <SafeAreaView style={styles.container}>
-                <FlatList
-                    data={appdeas}
-                    renderItem={({ item }) => (
-                        <Appdea appdea={item.name} appdeaId={item.id} />
-                    )}
-                    keyExtractor={item => item.id.toString()}
-                />
-            </SafeAreaView>
-            <TouchableOpacity
-                onPress={(): void => navigation.navigate('New')}
-                style={styles.button}>
-                <Text style={styles.buttonText}>Add New</Text>
-            </TouchableOpacity>
-        </>
+        <SafeAreaView style={styles.container}>
+            <FlatList
+                data={appdeas}
+                renderItem={({ item }) => (
+                    <Appdea appdea={item.name} appdeaId={item.id} />
+                )}
+                keyExtractor={item => item.id.toString()}
+            />
+        </SafeAreaView>
     );
 };
 
@@ -90,6 +79,6 @@ const styles = StyleSheet.create({
         backgroundColor: THEME.COLORS.PERSIAN_GREEN,
     },
     buttonText: {
-        color: THEME.COLORS.SNOW_WHITE
-    }
+        color: THEME.COLORS.SNOW_WHITE,
+    },
 });

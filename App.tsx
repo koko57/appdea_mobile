@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Stack } from './navigator';
+import { Tab, Stack } from './navigator';
 import { MainScreen } from './src/screens/MainScreen';
 import { AddNewScreen } from './src/screens/AddNewScreen';
 import { AppdeaScreen } from './src/screens/AppdeaScreen';
+import { AboutScreen } from './src/screens/AboutScreen';
 import { THEME } from './src/styles/theme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-const { Navigator, Screen } = Stack;
+const { Navigator, Screen } = Tab;
 
 const HeaderStyle = {
     headerStyle: {
@@ -19,18 +20,26 @@ const HeaderStyle = {
     },
 };
 
+function HomeStackScreen() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Appdea" component={AppdeaScreen} />
+      </Stack.Navigator>
+    );
+  }
+
 const App = () => {
     return (
         <SafeAreaProvider>
             <NavigationContainer>
-                <Navigator screenOptions={{ ...HeaderStyle }}>
+                <Navigator>
                     <Screen
                         name="Main"
-                        component={MainScreen}
-                        options={{ title: 'Appdea' }}
+                        component={HomeStackScreen}
                     />
                     <Screen name="New" component={AddNewScreen} />
-                    <Screen name="Appdea" component={AppdeaScreen} />
+                    <Screen name="About" component={AboutScreen} />
                 </Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
