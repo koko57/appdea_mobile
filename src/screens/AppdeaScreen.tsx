@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { StackParamList } from '../../navigator';
+import { StackParamList } from 'navigation/StackNavigation';
 import { BASE_URL } from '../../apiConfig';
 import { SafeAreaView } from 'react-native-safe-area-context';
 

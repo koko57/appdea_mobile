@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { Controller, Control } from 'react-hook-form';
 import { THEME } from '../styles/theme';
@@ -34,8 +34,8 @@ export const TextField: React.FC<Props> = ({
 };
 
 const commonStyles = {
-    borderColor: THEME.COLORS.LEMON_YELLOW,
-    borderWidth: 2,
+    borderBottomColor: THEME.COLORS.MINT_GREEN,
+    borderBottomWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,

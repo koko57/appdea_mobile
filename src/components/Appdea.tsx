@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';

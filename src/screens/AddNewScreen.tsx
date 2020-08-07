@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import axios from 'axios';
 import {
     View,
@@ -55,7 +55,7 @@ export const AddNewScreen: React.FC = () => {
 
 const styles = StyleSheet.create<Style>({
     container: {
-        flex: 1
+        flex: 1,
     },
     formView: {
         flex: 1,
