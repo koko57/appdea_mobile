@@ -7,5 +7,5 @@ export const config = {
     }),
 };
 
-
-export const BASE_URL = `http://${config.server}:5000`
+// will change this config later
+export const BASE_URL = 'https://appdea.herokuapp.com'
